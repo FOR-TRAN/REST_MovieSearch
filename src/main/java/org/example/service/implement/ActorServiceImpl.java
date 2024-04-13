@@ -19,8 +19,8 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public ActorResponseDTO find(Long id) {
-        Actor actor = actorRepository.find(id);
-        return ActorMapper.toDTO(actor);
+        Actor actor = actorRepository.find(id); //создается обьект entity actor и через репозиторий в него из БД записываются данные
+        return ActorMapper.toDTO(actor); //посылаем entity обьект в маппер для преобразования в DTO обьект и возвращаем обьект ДТО
     }
 
     @Override

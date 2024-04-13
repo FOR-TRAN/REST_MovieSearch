@@ -16,7 +16,7 @@ public class DataSerializer <T> {
      */
     public String toJson(T dto) {
         try {
-            return objectMapper.writeValueAsString(dto);
+            return objectMapper.writeValueAsString(dto); //в обьект класса ObjectMapper записывается DTO и преобразуется в JSON
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

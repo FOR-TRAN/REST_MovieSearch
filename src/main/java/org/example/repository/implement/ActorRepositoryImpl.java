@@ -21,16 +21,16 @@ public class ActorRepositoryImpl implements ActorRepository {
         String sql = "select * from actor where id = ?";
 
         try (Connection connection = HikariCPDataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setLong(1, actorId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            actor = mapRowToActor(resultSet);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) { //создаем объект из класса Prepared Statement для осуществления запроса в БД и передаем в параметрах строку sql
+            preparedStatement.setLong(1, actorId); //устанавливаем параметр запроса из параметра метода find
+            ResultSet resultSet = preparedStatement.executeQuery(); //Записываем полученные данные из БД в обьект класса ResultSet который используется для хранения данных полученных из БД
+            resultSet.next(); //переход к следующей строке запроса
+            actor = mapRowToActor(resultSet); //записываем в entity результат из БД через метод - преобразователь из ResultSet в обьект - сущность actor
         } catch (SQLException e) {
             log.error(e.getMessage());
             throw new EntityNotFoundException("Строка в базе данных с id=" + actorId + " не найдена");
         }
-        return actor;
+        return actor; //возвращаем entity в слой сервис
     }
 
     @Override

@@ -48,7 +48,7 @@ public class ActorController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long id = Long.parseLong(req.getParameter("id"));
         ActorResponseDTO dto = actorService.find(id);
-        String json = serializer.toJson(dto);
+        String json = serializer.toJson(dto); //преобразовываем DTO в строку JSON
         resp.getWriter().write(json);
     }
 
